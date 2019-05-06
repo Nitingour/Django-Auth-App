@@ -21,7 +21,7 @@ from BlogApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index,name='home'),
     path('accounts/',include('django.contrib.auth.urls')),
     path('newblog/',views.newblog,name='newblog' ),
     path('viewblogs/',views.viewblogs,name='viewblogs'),

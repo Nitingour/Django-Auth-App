@@ -19,4 +19,6 @@ def signupview(request):
         user=sform.save()
         user.set_password(user.password)
         user.save()
-        return render(request,"BlogApp/success.html",{'msg':'DONE'})
+        sform=SignupForm()
+        mydict={'sform':sform,'msg':'Registration Succssfully...'}
+        return render(request,"BlogApp/signup.html",context=mydict)

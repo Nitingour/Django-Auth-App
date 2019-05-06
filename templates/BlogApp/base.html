@@ -16,7 +16,7 @@
       <a class="navbar-brand" href="#">BLOG</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
       <li ><a href="{% url 'newblog' %}">Post Blog</a></li>
       <li ><a href="{% url 'viewblogs' %}">View All Blogs</a></li>
   </ul>
@@ -24,10 +24,10 @@
 
      {%  if request.user.is_authenticated is True %}
      <li class="active"><a>Welcome {{request.user}}</a></li>
-     <li><a href='accounts/logout'><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+     <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
      {% endif %}
      {%  if request.user.is_authenticated is not True %}
-       <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+       <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
   <!--   <li><a href='accounts/login'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
       <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     {% endif%}
