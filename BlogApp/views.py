@@ -1,14 +1,31 @@
 from django.shortcuts import render
-from BlogApp.forms import SignupForm
+from BlogApp.forms import SignupForm,BlogForm
+from django.contrib.auth.decorators import login_required
+from BlogApp.models import Blog
 # Create your views here.
 def index(request):
     return render(request,'BlogApp/index.html')
 
+@login_required
 def newblog(request):
-    return render(request,'BlogApp/newblog.html')
+    if request.method=="POST":
+        print('POST Calling')
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.author=request.user
+            data.save()
+            print('Data save successfully')
+            form=BlogForm()
+            mydict={'form':form,'msg':'Blog Posted Succssfully...'}
+            return render(request,"BlogApp/newblog.html",context=mydict)
+    else:
+        form=BlogForm()
+        return render(request,'BlogApp/newblog.html',{'form':form})
 
 def viewblogs(request):
-    return render(request,'BlogApp/viewblog.html')
+    blogs=Blog.objects.all().order_by('-upload_date')
+    return render(request,'BlogApp/viewblog.html',{'blogs':blogs})
 
 def signupview(request):
     if request.method=='GET':

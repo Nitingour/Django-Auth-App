@@ -1,8 +1,10 @@
 
 {% extends 'BlogApp/base.html'%}
-
+{%load staticfiles%}
 {% block  parentblock  %}
 <div class="container" align='center'>
-<h1>Welcome to Blog</h1>
+<h1>Welcome to Blog</h1><br/>
+<img src="{% static 'images/blog.jpg' %}" />
+
 </div>
 {%endblock%}

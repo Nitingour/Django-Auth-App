@@ -3,6 +3,52 @@
 
 {% block  parentblock  %}
 <div class="container" align='center'>
-<h1>View All Blog</h1>
+<h1>Blogs</h1>
+
+
+
+
+
+{% for blog in blogs %}
+
+<div class="well">
+      <div class="media">
+      	<a class="pull-left" href="#">
+        <img src='{{ blog.image.url }}' class="media-object" />
+
+  		</a>
+  		<div class="media-body">
+    		<h4 class="media-heading">{{blog.title}}</h4>
+          <p class="text-right">By {{blog.author}}</p>
+          <p>{{blog.description}}</p>
+          <ul class="list-inline list-unstyled">
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> {{blog.upload_date | timesince}}</span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <li>|</li>
+            <li>
+               <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+            </li>
+
+			</ul>
+       </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+
+<!--{% for blog in blogs %}
+      {{forloop.counter}}.<a href="{{ blog.image.url }}">{{ blog.image.name }}</a>
+      <img src='{{ blog.image.url }}' height='100' width='150' />
+      ({{blog.upload_date | timesince}} ago)<hr />
+  {% endfor %} -->
+
+
+
 </div>
 {%endblock%}
